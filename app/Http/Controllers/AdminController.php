@@ -2,23 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inventory;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use phpDocumentor\Reflection\Types\Integer as TypesInteger;
-use Ramsey\Uuid\Type\Integer;
 
+
+/**
+ * @group Admin Authentication
+ * 
+ */
 class AdminController extends Controller
 {
-    //
-    public function __construct()
-    {
-        $this->middleware(['auth:api', 'isAdmin'], ['except' => ['login', 'register']]);
-    }
+    
 
+    /**
+     * Login Admin
+     * 
+     * @bodyParam email string required Admin Email. Example: admin@mail.com
+     * @bodyParam password string required Admin Password. Example: admin-secret
+     * 
+     * @response{
+     *  'status' => 'success',
+     *       'authorisation' => [
+     *          'token' => 'jwt-auth-token',
+     *         'type' => 'bearer'
+     *    ]
+     * }
+     */
     public function login(Request $request)
     {
         $request->validate([
@@ -28,7 +39,7 @@ class AdminController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        $token = Auth::attempt($credentials);
+        $token = Auth::guard('admin')->attempt($credentials);
 
         if (!$token) {
             return response()->json([
@@ -46,35 +57,40 @@ class AdminController extends Controller
         ], 200);
     }
 
+    /**
+     * Register Admin
+     * 
+     * @bodyParam fullname string required Admin Fullname. Example: John Admin
+     * @bodyParam email string required Admin Email. Example: admin@mail.com
+     * @bodyParam password string required User Password. Example: admin-secret
+     * 
+     * @response{
+     *  'status' => 'success',
+     *       'authorisation' => [
+     *          'token' => 'jwt-auth-token',
+     *         'type' => 'bearer'
+     *    ]
+     * }
+     */
+
     public function register(Request $reequest)
     {
         $reequest->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:admins',
             'password' => 'required|string|min:6',
         ]);
 
-        $user = User::create([
+        $user = Admin::create([
             'name' => $reequest->name,
             'email' => $reequest->email,
-            'user_type' => 'Admin',
             'password' => Hash::make($reequest->password),
         ]);
 
 
-        $token = Auth::login($user);
-
         return response()->json([
             'status' => "success",
-            'message' => "User Created Successfully",
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer'
-            ]
+            'message' => "Admin Created Successfully"
         ], status: 201);
     }
-
-    
-
-
 }

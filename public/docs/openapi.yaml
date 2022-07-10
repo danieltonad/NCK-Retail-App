@@ -7,9 +7,9 @@ servers:
   -
     url: 'http://localhost'
 paths:
-  /api/user/register:
+  /api/admin/register:
     post:
-      summary: ''
+      summary: 'Register Admin'
       description: ''
       parameters:
         -
@@ -26,13 +26,43 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n 'status' => 'success',\n      'authorisation' => [\n         'token' => 'jwt-auth-token',\n        'type' => 'bearer'\n   ]\n}"
       tags:
-        - Endpoints
+        - 'Admin Authentication'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: 'Admin Fullname.'
+                  example: 'John Admin'
+                email:
+                  type: string
+                  description: 'Admin Email.'
+                  example: admin@mail.com
+                password:
+                  type: string
+                  description: 'User Password.'
+                  example: admin-secret
+              required:
+                - fullname
+                - email
+                - password
       security: []
-  /api/user/login:
+  /api/admin/login:
     post:
-      summary: ''
+      summary: 'Login Admin'
       description: ''
       parameters:
         -
@@ -49,9 +79,16 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n 'status' => 'success',\n      'authorisation' => [\n         'token' => 'jwt-auth-token',\n        'type' => 'bearer'\n   ]\n}"
       tags:
-        - Endpoints
+        - 'Admin Authentication'
       requestBody:
         required: true
         content:
@@ -61,16 +98,182 @@ paths:
               properties:
                 email:
                   type: string
-                  description: 'Must be a valid email address.'
-                  example: neoma.langworth@example.com
+                  description: 'Admin Email.'
+                  example: admin@mail.com
                 password:
                   type: string
-                  description: ''
-                  example: ut
+                  description: 'Admin Password.'
+                  example: admin-secret
               required:
                 - email
                 - password
       security: []
+  /api/user/cart/add:
+    post:
+      summary: 'Add Inventory To Cart'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n 'status' => \"success\",\n 'message' => \"Inventory added to cart successfully, Cart ID: 1234\"\n}"
+      tags:
+        - Cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inventory_id:
+                  type: integer
+                  description: 'Inventory ID .'
+                  example: 1234
+                quantity:
+                  type: integer
+                  description: Quantity.
+                  example: 1
+              required:
+                - inventory_id
+                - quantity
+  /api/user/cart/list:
+    get:
+      summary: 'List Cart Inventories'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n 'status' => \"success || error\",\n 'message' => \"success || error message\"\n 'data' => []\n}"
+      tags:
+        - Cart
+  '/api/user/cart/delete/{cart_id}':
+    delete:
+      summary: 'Delete Inventory From Cart'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n 'status' => \"success || error\",\n 'message' => \"success || error message\"\n}"
+      tags:
+        - Cart
+    parameters:
+      -
+        in: path
+        name: cart_id
+        description: 'Cart ID .'
+        example: 1234
+        required: true
+        schema:
+          type: integer
+  '/api/user/cart/update/{cart_id}':
+    patch:
+      summary: 'Update Existing Inventory In Cart'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n 'status' => \"success || error\",\n 'message' => \"success || error message\"\n}"
+      tags:
+        - Cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  description: 'Quantity .'
+                  example: 1234
+              required:
+                - quantity
+      security: []
+    parameters:
+      -
+        in: path
+        name: cart_id
+        description: 'Cart ID .'
+        example: 1234
+        required: true
+        schema:
+          type: integer
   /api/user/inventories:
     get:
       summary: ''
@@ -106,73 +309,9 @@ paths:
       tags:
         - Endpoints
       security: []
-  /api/admin/register:
-    post:
-      summary: ''
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  /api/admin/login:
-    post:
-      summary: ''
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  description: 'Must be a valid email address.'
-                  example: ebeier@example.com
-                password:
-                  type: string
-                  description: ''
-                  example: repudiandae
-              required:
-                - email
-                - password
-      security: []
   /api/admin/inventory/add:
     post:
-      summary: ''
+      summary: 'Create the specified resource in storage.'
       description: ''
       parameters:
         -
@@ -202,15 +341,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: magni
+                  example: rerum
                 price:
                   type: number
                   description: ''
-                  example: 71220.32
+                  example: 491.0
                 quantity:
                   type: number
                   description: ''
-                  example: 71.07
+                  example: 3064531.9999
               required:
                 - name
                 - price
@@ -279,13 +418,13 @@ paths:
         in: path
         name: id
         description: 'The ID of the view.'
-        example: praesentium
+        example: in
         required: true
         schema:
           type: string
   '/api/admin/inventory/delete/{id}':
-    get:
-      summary: ''
+    delete:
+      summary: 'Delete the specified resource in storage.'
       description: ''
       parameters:
         -
@@ -302,19 +441,7 @@ paths:
           example: application/json
           schema:
             type: string
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+      responses: {  }
       tags:
         - Endpoints
       security: []
@@ -323,12 +450,12 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: dignissimos
+        example: quia
         required: true
         schema:
           type: string
   '/api/admin/inventory/update/{id}':
-    post:
+    patch:
       summary: 'Update the specified resource in storage.'
       description: ''
       parameters:
@@ -359,26 +486,136 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: pariatur
+                  example: aut
                 price:
                   type: number
                   description: ''
-                  example: 227332.11201
+                  example: 0.3619
                 quantity:
                   type: number
                   description: ''
-                  example: 1131749.0
+                  example: 12166630.07
       security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the update.'
-        example: magni
+        example: dicta
         required: true
         schema:
           type: string
+  /api/user/register:
+    post:
+      summary: 'Register User'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n 'status' => 'success',\n      'authorisation' => [\n         'token' => 'jwt-auth-token',\n        'type' => 'bearer'\n   ]\n}"
+      tags:
+        - 'User Authentication'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'User Full Name.'
+                  example: 'John Doe'
+                email:
+                  type: string
+                  description: 'User Email.'
+                  example: admin@mail.com
+                password:
+                  type: string
+                  description: 'User Password.'
+                  example: secret
+              required:
+                - name
+                - email
+                - password
+      security: []
+  /api/user/login:
+    post:
+      summary: 'Login User'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n 'status' => 'success',\n      'authorisation' => [\n         'token' => 'jwt-auth-token',\n        'type' => 'bearer'\n   ]\n}"
+      tags:
+        - 'User Authentication'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'User Email.'
+                  example: user@mail.com
+                password:
+                  type: string
+                  description: 'User Password.'
+                  example: secret
+              required:
+                - email
+                - password
+      security: []
 tags:
   -
+    name: 'Admin Authentication'
+    description: ''
+  -
+    name: Cart
+    description: ''
+  -
     name: Endpoints
+    description: ''
+  -
+    name: 'User Authentication'
     description: ''

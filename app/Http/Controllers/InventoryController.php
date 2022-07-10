@@ -10,7 +10,7 @@ class InventoryController extends Controller
     //
     public function __construct()
     {
-        $this->middleware(['auth:api', 'isAdmin'],['except' => ['listInventory']]);
+        $this->middleware('auth:admin',['except' => 'listInventory']);
     }
 
     public function listInventory()
@@ -38,7 +38,7 @@ class InventoryController extends Controller
             'price' => 'required|numeric',
             'quantity' => 'required|numeric'
         ]);
-        $id = $this->UniqueID(3, 'inventories');
+        $id = UtilsController::UniqueID(3, 'inventories');
         try {
             $user = Inventory::create([
                 'id' => $id,

@@ -7,6 +7,12 @@ use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
+/**
+ * @group Cart
+ * 
+ */
+
 class CartController extends Controller
 {
     //
@@ -15,6 +21,20 @@ class CartController extends Controller
         $this->middleware('auth:api');
     }
 
+    /**
+     * Add Inventory To Cart
+     * 
+     * @authenticated
+     * 
+     * @bodyParam inventory_id integer required Inventory ID . Example: 1234
+     * @bodyParam quantity integer required  Quantity. Example: 1
+     * 
+     * @response{
+     *  'status' => "success",
+     *  'message' => "Inventory added to cart successfully, Cart ID: 1234"
+     * }
+     */
+
     public function addToCart(Request $request)
     {
         $request->validate([
@@ -22,9 +42,7 @@ class CartController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
-        // init admin ctrl
-        $id = new AdminController();
-        $id = $id->UniqueID(4, 'carts');
+        $id = UtilsController::UniqueID(4, 'carts');
 
         $user_id = $request->user()->id;
         $available_qty = UtilsController::checkInventoryAvailibility($request->quantity, $request->inventory_id);
@@ -55,6 +73,17 @@ class CartController extends Controller
         }
     }
 
+    /**
+     * List Cart Inventories
+     * 
+     * @authenticated
+     * 
+     * @response{
+     *  'status' => "success || error",
+     *  'message' => "success || error message"
+     *  'data' => []
+     * }
+     */
     public function listCart()
     {
         $cart = Cart::join('inventories', 'carts.inventory', '=', 'inventories.id')
@@ -78,6 +107,18 @@ class CartController extends Controller
     }
 
 
+    /**
+     * Delete Inventory From Cart
+     * 
+     * @authenticated
+     * 
+     * @urlParam cart_id integer required Cart ID . Example: 1234
+     * 
+     * @response{
+     *  'status' => "success || error",
+     *  'message' => "success || error message"
+     * }
+     */
     public function deleteFromCart($cart_id)
     {
         $del = Cart::where([
@@ -101,6 +142,20 @@ class CartController extends Controller
         ], status: 501);
     }
 
+
+    /**
+     * Update Existing Inventory In Cart
+     * 
+     * @authenticated
+     * 
+     * @urlParam cart_id integer required Cart ID . Example: 1234
+     * @bodyParam quantity integer required Quantity . Example: 1234
+     * 
+     * @response{
+     *  'status' => "success || error",
+     *  'message' => "success || error message"
+     * }
+     */
     public function updateCart(Request $request, $cart_id)
     {
         $request->validate([
@@ -133,6 +188,4 @@ class CartController extends Controller
                 'message' => "Unable To Update Cart, Try Again"
             ], status: 200);
     }
-
-    
 }

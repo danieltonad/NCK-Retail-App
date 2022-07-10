@@ -10,51 +10,23 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "31f72965-e199-4464-8f16-0126d10b6fe6",
+        "_postman_id": "edfe028e-214d-49c5-a96e-68186c92be26",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
         {
-            "name": "Endpoints",
+            "name": "Admin Authentication",
             "description": "",
             "item": [
                 {
-                    "name": "api\/user\/register",
+                    "name": "Register Admin",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/user\/register",
+                            "path": "api\/admin\/register",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/user\/register"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "api\/user\/login",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/user\/login",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/user\/login"
+                            "raw": "{{baseUrl}}\/api\/admin\/register"
                         },
                         "method": "POST",
                         "header": [
@@ -69,15 +41,225 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"neoma.langworth@example.com\",\"password\":\"ut\"}"
+                            "raw": "{\"fullname\":\"John Admin\",\"email\":\"admin@mail.com\",\"password\":\"admin-secret\"}"
                         },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => 'success',\n      'authorisation' => [\n         'token' => 'jwt-auth-token',\n        'type' => 'bearer'\n   ]\n}",
+                            "name": ""
+                        }
+                    ]
                 },
+                {
+                    "name": "Login Admin",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"admin@mail.com\",\"password\":\"admin-secret\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => 'success',\n      'authorisation' => [\n         'token' => 'jwt-auth-token',\n        'type' => 'bearer'\n   ]\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Cart",
+            "description": "",
+            "item": [
+                {
+                    "name": "Add Inventory To Cart",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user\/cart\/add",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user\/cart\/add"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"inventory_id\":1234,\"quantity\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => \"success\",\n 'message' => \"Inventory added to cart successfully, Cart ID: 1234\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List Cart Inventories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user\/cart\/list",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user\/cart\/list"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => \"success || error\",\n 'message' => \"success || error message\"\n 'data' => []\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete Inventory From Cart",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user\/cart\/delete\/:cart_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user\/cart\/delete\/:cart_id",
+                            "variable": [
+                                {
+                                    "id": "cart_id",
+                                    "key": "cart_id",
+                                    "value": "1234",
+                                    "description": "Cart ID ."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => \"success || error\",\n 'message' => \"success || error message\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update Existing Inventory In Cart",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user\/cart\/update\/:cart_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user\/cart\/update\/:cart_id",
+                            "variable": [
+                                {
+                                    "id": "cart_id",
+                                    "key": "cart_id",
+                                    "value": "1234",
+                                    "description": "Cart ID ."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"quantity\":1234}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => \"success || error\",\n 'message' => \"success || error message\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
                 {
                     "name": "api\/user\/inventories",
                     "request": {
@@ -127,66 +309,7 @@
                     ]
                 },
                 {
-                    "name": "api\/admin\/register",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/admin\/register",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/admin\/register"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "api\/admin\/login",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/admin\/login",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/admin\/login"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"email\":\"ebeier@example.com\",\"password\":\"repudiandae\"}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "api\/admin\/inventory\/add",
+                    "name": "Create the specified resource in storage.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -207,7 +330,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"magni\",\"price\":71220.32,\"quantity\":71.07}"
+                            "raw": "{\"name\":\"rerum\",\"price\":491,\"quantity\":3064531.9999}"
                         },
                         "description": "",
                         "auth": {
@@ -256,7 +379,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "praesentium",
+                                    "value": "in",
                                     "description": "The ID of the view."
                                 }
                             ]
@@ -301,7 +424,7 @@
                     ]
                 },
                 {
-                    "name": "api\/admin\/inventory\/delete\/{id}",
+                    "name": "Delete the specified resource in storage.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -312,12 +435,12 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dignissimos",
+                                    "value": "quia",
                                     "description": "The ID of the delete."
                                 }
                             ]
                         },
-                        "method": "GET",
+                        "method": "DELETE",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -334,27 +457,7 @@
                             "type": "noauth"
                         }
                     },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
-                        }
-                    ]
+                    "response": []
                 },
                 {
                     "name": "Update the specified resource in storage.",
@@ -368,10 +471,47 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "magni",
+                                    "value": "dicta",
                                     "description": "The ID of the update."
                                 }
                             ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"aut\",\"price\":0.3619,\"quantity\":12166630.07}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "User Authentication",
+            "description": "",
+            "item": [
+                {
+                    "name": "Register User",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user\/register"
                         },
                         "method": "POST",
                         "header": [
@@ -386,14 +526,59 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"pariatur\",\"price\":227332.11201,\"quantity\":1131749}"
+                            "raw": "{\"name\":\"John Doe\",\"email\":\"admin@mail.com\",\"password\":\"secret\"}"
                         },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => 'success',\n      'authorisation' => [\n         'token' => 'jwt-auth-token',\n        'type' => 'bearer'\n   ]\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Login User",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"user@mail.com\",\"password\":\"secret\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => 'success',\n      'authorisation' => [\n         'token' => 'jwt-auth-token',\n        'type' => 'bearer'\n   ]\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         }

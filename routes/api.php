@@ -26,7 +26,7 @@ Route::prefix('user/')->group(
     function () {
         Route::post('register', [UserController::class, 'register']);
         Route::post('login', [UserController::class, 'login']);
-        Route::get('inventories', [InventoryController::class, 'listInventory']);
+        Route::get('inventories', [InventoryController::class, 'listInventory'])->middleware('auth:api');
         // cart
         Route::prefix('cart')->group(function () {
             Route::post('add', [CartController::class, 'addToCart']);

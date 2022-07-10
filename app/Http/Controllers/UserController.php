@@ -10,13 +10,27 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * @group User Authentication
+ * 
+ */
 class UserController extends Controller
 {
-    //
-    public function __construct()
-    {
-        // $this->middleware('auth:api');
-    }
+
+    /**
+     * Login User
+     * 
+     * @bodyParam email string required User Email. Example: user@mail.com
+     * @bodyParam password string required User Password. Example: secret
+     * 
+     * @response{
+     *  'status' => 'success',
+     *       'authorisation' => [
+     *          'token' => 'jwt-auth-token',
+     *         'type' => 'bearer'
+     *    ]
+     * }
+     */
 
     public function login(Request $request)
     {
@@ -45,6 +59,23 @@ class UserController extends Controller
         ], 200);
     }
 
+
+    /**
+     * Register User
+     * 
+     * @bodyParam name string required User Full Name. Example: John Doe
+     * @bodyParam email string required User Email. Example: admin@mail.com
+     * @bodyParam password string required User Password. Example: secret
+     * 
+     * @response{
+     *  'status' => 'success',
+     *       'authorisation' => [
+     *          'token' => 'jwt-auth-token',
+     *         'type' => 'bearer'
+     *    ]
+     * }
+     */
+
     public function register(Request $reequest)
     {
         $reequest->validate([
@@ -56,25 +87,12 @@ class UserController extends Controller
         $user = User::create([
             'name' => $reequest->name,
             'email' => $reequest->email,
-            'user_type' => 'User',
             'password' => Hash::make($reequest->password),
         ]);
 
-
-        $token = Auth::login($user);
-
         return response()->json([
             'status' => "success",
-            'message' => "User Created Successfully",
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer'
-            ]
+            'message' => "User Created Successfully"
         ], status: 201);
     }
-
-
-
-
-    
 }
