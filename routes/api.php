@@ -43,7 +43,7 @@ Route::prefix('admin/')->group(
         Route::post('login', [AdminController::class, 'login']);
         Route::prefix('inventory')->group(function () {
             Route::post('add', [InventoryController::class, 'addInventory']);
-            Route::post('list', [InventoryController::class, 'listInventory']);
+            Route::get('list', [InventoryController::class, 'listInventory']);
             Route::get('view/{id}', [InventoryController::class,'viewInventory']);
             Route::delete('delete/{id}', [InventoryController::class, 'deleteInventory']);
             Route::patch('update/{id}', [InventoryController::class, 'updateInventory']);

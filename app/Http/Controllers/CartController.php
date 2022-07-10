@@ -112,7 +112,7 @@ class CartController extends Controller
      * 
      * @authenticated
      * 
-     * @urlParam cart_id integer required Cart ID . Example: 1234
+     * @urlParam cart_id integer required Cart ID.
      * 
      * @response{
      *  'status' => "success || error",
@@ -148,7 +148,7 @@ class CartController extends Controller
      * 
      * @authenticated
      * 
-     * @urlParam cart_id integer required Cart ID . Example: 1234
+     * @urlParam cart_id integer required Cart ID.
      * @bodyParam quantity integer required Quantity . Example: 1234
      * 
      * @response{

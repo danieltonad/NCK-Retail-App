@@ -85,9 +85,9 @@ endpoints:
     urlParameters:
       cart_id:
         name: cart_id
-        description: 'Cart ID .'
+        description: 'Cart ID.'
         required: true
-        example: 1234
+        example: 16
         type: integer
         custom: []
     queryParameters: []
@@ -110,7 +110,7 @@ endpoints:
     metadata:
       title: 'Update Existing Inventory In Cart'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -118,9 +118,9 @@ endpoints:
     urlParameters:
       cart_id:
         name: cart_id
-        description: 'Cart ID .'
+        description: 'Cart ID.'
         required: true
-        example: 1234
+        example: 7
         type: integer
         custom: []
     queryParameters: []

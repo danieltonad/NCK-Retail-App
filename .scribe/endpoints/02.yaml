@@ -1,4 +1,4 @@
-name: Endpoints
+name: Inventories
 description: ''
 endpoints:
   -
@@ -6,9 +6,9 @@ endpoints:
       - GET
     uri: api/user/inventories
     metadata:
-      title: ''
+      title: 'List Inventory'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -18,22 +18,24 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+           'status' => "success || error",
+           'message' => "sucess || error message",
+           'data' => []
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
       - POST
     uri: api/admin/inventory/add
     metadata:
-      title: 'Create the specified resource in storage.'
+      title: 'Create Inventory'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -43,52 +45,44 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: ''
+        description: 'Inventory Name .'
         required: true
-        example: rerum
+        example: 'Samsung S21 Ultra'
         type: string
         custom: []
       price:
         name: price
-        description: ''
+        description: 'Inventory Price.'
         required: true
-        example: 491.0
-        type: number
+        example: 1450
+        type: integer
         custom: []
       quantity:
         name: quantity
-        description: ''
+        description: 'Inventory Supplied Quantity.'
         required: true
-        example: 3064531.9999
-        type: number
+        example: 120
+        type: integer
         custom: []
-    responses: []
-    responseFields: []
-  -
-    httpMethods:
-      - POST
-    uri: api/admin/inventory/list
-    metadata:
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    queryParameters: []
-    bodyParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           'status' => "success || error",
+           'message' => "Inventory Created Successfully, Inventory id: #334"
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
       - GET
     uri: 'api/admin/inventory/view/{id}'
     metadata:
-      title: 'Update the specified resource in storage.'
+      title: 'View Specific Inventory'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -98,29 +92,37 @@ endpoints:
         name: id
         description: 'The ID of the view.'
         required: true
-        example: in
+        example: necessitatibus
         type: string
+        custom: []
+      inventory_id:
+        name: inventory_id
+        description: 'Inventory ID.'
+        required: true
+        example: 1234
+        type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+           'status' => "success || error",
+           'message' => "sucess || error message"
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
       - DELETE
     uri: 'api/admin/inventory/delete/{id}'
     metadata:
-      title: 'Delete the specified resource in storage.'
+      title: 'Delete Inventory'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -130,21 +132,37 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: quia
+        example: atque
         type: string
+        custom: []
+      inventory_id:
+        name: inventory_id
+        description: 'Inventory ID'
+        required: true
+        example: 11
+        type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           'status' => "success || error",
+           'message' => "sucess || error message"
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
       - PATCH
     uri: 'api/admin/inventory/update/{id}'
     metadata:
-      title: 'Update the specified resource in storage.'
+      title: 'Update Inventory'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -154,31 +172,67 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: dicta
+        example: et
         type: string
         custom: []
     queryParameters: []
     bodyParameters:
       name:
         name: name
-        description: ''
-        required: false
-        example: aut
+        description: 'Inventory Name .'
+        required: true
+        example: 'Samsung S21 Ultra'
         type: string
         custom: []
       price:
         name: price
-        description: ''
-        required: false
-        example: 0.3619
-        type: number
+        description: 'Inventory Price.'
+        required: true
+        example: 1450
+        type: integer
         custom: []
       quantity:
         name: quantity
-        description: ''
-        required: false
-        example: 12166630.07
-        type: number
+        description: 'Inventory Supplied Quantity.'
+        required: true
+        example: 120
+        type: integer
         custom: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           'status' => "success || error",
+           'message' => "sucess || error message"
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/admin/inventory/list
+    metadata:
+      title: 'List Inventory'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           'status' => "success || error",
+           'message' => "sucess || error message",
+           'data' => []
+          }
+        headers: []
+        description: '200'
     responseFields: []

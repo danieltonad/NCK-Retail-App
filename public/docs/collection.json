@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "edfe028e-214d-49c5-a96e-68186c92be26",
+        "_postman_id": "bb2ff341-d07c-4940-b853-019114627417",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -180,8 +180,8 @@
                                 {
                                     "id": "cart_id",
                                     "key": "cart_id",
-                                    "value": "1234",
-                                    "description": "Cart ID ."
+                                    "value": "16",
+                                    "description": "Cart ID."
                                 }
                             ]
                         },
@@ -220,8 +220,8 @@
                                 {
                                     "id": "cart_id",
                                     "key": "cart_id",
-                                    "value": "1234",
-                                    "description": "Cart ID ."
+                                    "value": "7",
+                                    "description": "Cart ID."
                                 }
                             ]
                         },
@@ -240,10 +240,7 @@
                             "mode": "raw",
                             "raw": "{\"quantity\":1234}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -257,11 +254,11 @@
             ]
         },
         {
-            "name": "Endpoints",
+            "name": "Inventories",
             "description": "",
             "item": [
                 {
-                    "name": "api\/user\/inventories",
+                    "name": "List Inventory",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -281,35 +278,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => \"success || error\",\n 'message' => \"sucess || error message\",\n 'data' => []\n}",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "Create the specified resource in storage.",
+                    "name": "Create Inventory",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -330,45 +311,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"rerum\",\"price\":491,\"quantity\":3064531.9999}"
+                            "raw": "{\"name\":\"Samsung S21 Ultra\",\"price\":1450,\"quantity\":120}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => \"success || error\",\n 'message' => \"Inventory Created Successfully, Inventory id: #334\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
-                    "name": "api\/admin\/inventory\/list",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/admin\/inventory\/list",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/admin\/inventory\/list"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Update the specified resource in storage.",
+                    "name": "View Specific Inventory",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -379,8 +336,14 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "in",
+                                    "value": "necessitatibus",
                                     "description": "The ID of the view."
+                                },
+                                {
+                                    "id": "inventory_id",
+                                    "key": "inventory_id",
+                                    "value": "1234",
+                                    "description": "Inventory ID."
                                 }
                             ]
                         },
@@ -396,35 +359,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => \"success || error\",\n 'message' => \"sucess || error message\"\n}",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "Delete the specified resource in storage.",
+                    "name": "Delete Inventory",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -435,8 +382,14 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quia",
+                                    "value": "atque",
                                     "description": "The ID of the delete."
+                                },
+                                {
+                                    "id": "inventory_id",
+                                    "key": "inventory_id",
+                                    "value": "11",
+                                    "description": "Inventory ID"
                                 }
                             ]
                         },
@@ -452,15 +405,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => \"success || error\",\n 'message' => \"sucess || error message\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
-                    "name": "Update the specified resource in storage.",
+                    "name": "Update Inventory",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -471,7 +428,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dicta",
+                                    "value": "et",
                                     "description": "The ID of the update."
                                 }
                             ]
@@ -489,14 +446,50 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"aut\",\"price\":0.3619,\"quantity\":12166630.07}"
+                            "raw": "{\"name\":\"Samsung S21 Ultra\",\"price\":1450,\"quantity\":120}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => \"success || error\",\n 'message' => \"sucess || error message\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List Inventory",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/inventory\/list",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/inventory\/list"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n 'status' => \"success || error\",\n 'message' => \"sucess || error message\",\n 'data' => []\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },

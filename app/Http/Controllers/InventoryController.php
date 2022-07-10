@@ -5,17 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\Inventory;
 use Illuminate\Http\Request;
 
+/**
+ * @group Inventories
+ * 
+ */
+
 class InventoryController extends Controller
 {
     //
     public function __construct()
     {
-        $this->middleware('auth:admin',['except' => 'listInventory']);
+        $this->middleware('auth:admin', ['except' => 'listInventory']);
     }
 
+    /**
+     * List Inventory
+     * 
+     * @authenticated
+     * 
+     * 
+     * @response{
+     *  'status' => "success || error",
+     *  'message' => "sucess || error message",
+     *  'data' => []
+     * }
+     */
     public function listInventory()
     {
-        $inventory = Inventory::all(['id','name','price']);
+        $inventory = Inventory::all(['id', 'name', 'price']);
         return response()->json([
             'status' => 'success',
             'message' => count($inventory) > 0 ? 'Inventory List' : 'Inventory Empty !!',
@@ -24,11 +41,18 @@ class InventoryController extends Controller
     }
 
     /**
-     * Create the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * Create Inventory
      * 
-     * @return \Illuminate\Http\Response
+     * @authenticated
+     * 
+     * @bodyParam name string required Inventory Name . Example: Samsung S21 Ultra
+     * @bodyParam price integer required  Inventory Price. Example: 1450
+     * @bodyParam quantity integer required  Inventory Supplied Quantity. Example: 120
+     * 
+     * @response{
+     *  'status' => "success || error",
+     *  'message' => "Inventory Created Successfully, Inventory id: #334"
+     * }
      */
 
     public function addInventory(Request $request)
@@ -61,11 +85,16 @@ class InventoryController extends Controller
     }
 
     /**
-     * Delete the specified resource in storage.
-     *
-     * @param    $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Delete Inventory
+     * 
+     * @authenticated
+     * 
+     * @urlParam inventory_id integer required Inventory ID
+     * 
+     * @response{
+     *  'status' => "success || error",
+     *  'message' => "sucess || error message"
+     * }
      */
 
     public function deleteInventory($id)
@@ -85,10 +114,16 @@ class InventoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return \App\Models\Inventory
+     * View Specific Inventory
+     * 
+     * @authenticated
+     * 
+     * @urlParam inventory_id integer required Inventory ID.
+     * 
+     * @response{
+     *  'status' => "success || error",
+     *  'message' => "sucess || error message"
+     * }
      */
 
     public function viewInventory($id)
@@ -102,11 +137,19 @@ class InventoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Update Inventory
+     * 
+     * @authenticated
+     * 
+     * @urlPtaram inventory_id integer required Inventory ID . Example: 1234
+     * @bodyParam name string required Inventory Name . Example: Samsung S21 Ultra
+     * @bodyParam price integer required  Inventory Price. Example: 1450
+     * @bodyParam quantity integer required  Inventory Supplied Quantity. Example: 120
+     * 
+     * @response{
+     *  'status' => "success || error",
+     *  'message' => "sucess || error message"
+     * }
      */
 
     public function updateInventory(Request $request, $id)

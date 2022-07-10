@@ -102,27 +102,27 @@
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-4" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="endpoints">
-                    <a href="#endpoints">Endpoints</a>
+                <li class="tocify-item level-1" data-unique="inventories">
+                    <a href="#inventories">Inventories</a>
                 </li>
-                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-user-inventories">
-                        <a href="#endpoints-GETapi-user-inventories">GET api/user/inventories</a>
+                                    <ul id="tocify-subheader-inventories" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="inventories-GETapi-user-inventories">
+                        <a href="#inventories-GETapi-user-inventories">List Inventory</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-inventory-add">
-                        <a href="#endpoints-POSTapi-admin-inventory-add">Create the specified resource in storage.</a>
+                                    <li class="tocify-item level-2" data-unique="inventories-POSTapi-admin-inventory-add">
+                        <a href="#inventories-POSTapi-admin-inventory-add">Create Inventory</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-inventory-list">
-                        <a href="#endpoints-POSTapi-admin-inventory-list">POST api/admin/inventory/list</a>
+                                    <li class="tocify-item level-2" data-unique="inventories-GETapi-admin-inventory-view--id-">
+                        <a href="#inventories-GETapi-admin-inventory-view--id-">View Specific Inventory</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-inventory-view--id-">
-                        <a href="#endpoints-GETapi-admin-inventory-view--id-">Update the specified resource in storage.</a>
+                                    <li class="tocify-item level-2" data-unique="inventories-DELETEapi-admin-inventory-delete--id-">
+                        <a href="#inventories-DELETEapi-admin-inventory-delete--id-">Delete Inventory</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-admin-inventory-delete--id-">
-                        <a href="#endpoints-DELETEapi-admin-inventory-delete--id-">Delete the specified resource in storage.</a>
+                                    <li class="tocify-item level-2" data-unique="inventories-PATCHapi-admin-inventory-update--id-">
+                        <a href="#inventories-PATCHapi-admin-inventory-update--id-">Update Inventory</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-admin-inventory-update--id-">
-                        <a href="#endpoints-PATCHapi-admin-inventory-update--id-">Update the specified resource in storage.</a>
+                                    <li class="tocify-item level-2" data-unique="inventories-GETapi-admin-inventory-list">
+                        <a href="#inventories-GETapi-admin-inventory-list">List Inventory</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -675,14 +675,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/user/cart/delete/1234" \
+    "http://localhost/api/user/cart/delete/16" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user/cart/delete/1234"
+    "http://localhost/api/user/cart/delete/16"
 );
 
 const headers = {
@@ -762,16 +762,17 @@ fetch(url, {
                 <input type="number"
                name="cart_id"
                data-endpoint="DELETEapi-user-cart-delete--cart_id-"
-               value="1234"
+               value="16"
                data-component="url" hidden>
     <br>
-<p>Cart ID .</p>
+<p>Cart ID.</p>
             </p>
                     </form>
 
             <h2 id="cart-PATCHapi-user-cart-update--cart_id-">Update Existing Inventory In Cart</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -782,7 +783,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/user/cart/update/1234" \
+    "http://localhost/api/user/cart/update/7" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -793,7 +794,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user/cart/update/1234"
+    "http://localhost/api/user/cart/update/7"
 );
 
 const headers = {
@@ -837,7 +838,7 @@ fetch(url, {
 </span>
 <form id="form-PATCHapi-user-cart-update--cart_id-" data-method="PATCH"
       data-path="api/user/cart/update/{cart_id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -864,16 +865,24 @@ fetch(url, {
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/user/cart/update/{cart_id}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-PATCHapi-user-cart-update--cart_id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PATCHapi-user-cart-update--cart_id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>cart_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
                 <input type="number"
                name="cart_id"
                data-endpoint="PATCHapi-user-cart-update--cart_id-"
-               value="1234"
+               value="7"
                data-component="url" hidden>
     <br>
-<p>Cart ID .</p>
+<p>Cart ID.</p>
             </p>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
@@ -888,13 +897,14 @@ fetch(url, {
         </p>
         </form>
 
-        <h1 id="endpoints">Endpoints</h1>
+        <h1 id="inventories">Inventories</h1>
 
     
 
-            <h2 id="endpoints-GETapi-user-inventories">GET api/user/inventories</h2>
+            <h2 id="inventories-GETapi-user-inventories">List Inventory</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -929,20 +939,14 @@ fetch(url, {
 
 <span id="example-responses-GETapi-user-inventories">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
+                <pre>
 
 <code class="language-json">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+ 'status' =&gt; &quot;success || error&quot;,
+ 'message' =&gt; &quot;sucess || error message&quot;,
+ 'data' =&gt; []
 }</code>
  </pre>
     </span>
@@ -958,7 +962,7 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-user-inventories" data-method="GET"
       data-path="api/user/inventories"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -985,11 +989,20 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/user/inventories</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-GETapi-user-inventories" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-user-inventories"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
-            <h2 id="endpoints-POSTapi-admin-inventory-add">Create the specified resource in storage.</h2>
+            <h2 id="inventories-POSTapi-admin-inventory-add">Create Inventory</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1004,9 +1017,9 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"rerum\",
-    \"price\": 491,
-    \"quantity\": 3064531.9999
+    \"name\": \"Samsung S21 Ultra\",
+    \"price\": 1450,
+    \"quantity\": 120
 }"
 </code></pre></div>
 
@@ -1022,9 +1035,9 @@ const headers = {
 };
 
 let body = {
-    "name": "rerum",
-    "price": 491,
-    "quantity": 3064531.9999
+    "name": "Samsung S21 Ultra",
+    "price": 1450,
+    "quantity": 120
 };
 
 fetch(url, {
@@ -1036,7 +1049,17 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-admin-inventory-add">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ 'status' =&gt; &quot;success || error&quot;,
+ 'message' =&gt; &quot;Inventory Created Successfully, Inventory id: #334&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-admin-inventory-add" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-admin-inventory-add"></span>:
@@ -1049,7 +1072,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-admin-inventory-add" data-method="POST"
       data-path="api/admin/inventory/add"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1076,120 +1099,51 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/admin/inventory/add</code></b>
         </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+                <p>
+            <label id="auth-POSTapi-admin-inventory-add" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-admin-inventory-add"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
             <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-admin-inventory-add"
-               value="rerum"
+               value="Samsung S21 Ultra"
                data-component="body" hidden>
     <br>
-
+<p>Inventory Name .</p>
         </p>
                 <p>
-            <b><code>price</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+            <b><code>price</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
                 <input type="number"
                name="price"
                data-endpoint="POSTapi-admin-inventory-add"
-               value="491"
+               value="1450"
                data-component="body" hidden>
     <br>
-
+<p>Inventory Price.</p>
         </p>
                 <p>
-            <b><code>quantity</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+            <b><code>quantity</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
                 <input type="number"
                name="quantity"
                data-endpoint="POSTapi-admin-inventory-add"
-               value="3064531.9999"
+               value="120"
                data-component="body" hidden>
     <br>
-
+<p>Inventory Supplied Quantity.</p>
         </p>
         </form>
 
-            <h2 id="endpoints-POSTapi-admin-inventory-list">POST api/admin/inventory/list</h2>
+            <h2 id="inventories-GETapi-admin-inventory-view--id-">View Specific Inventory</h2>
 
 <p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-admin-inventory-list">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/inventory/list" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/inventory/list"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-admin-inventory-list">
-</span>
-<span id="execution-results-POSTapi-admin-inventory-list" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-admin-inventory-list"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-admin-inventory-list"></code></pre>
-</span>
-<span id="execution-error-POSTapi-admin-inventory-list" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-admin-inventory-list"></code></pre>
-</span>
-<form id="form-POSTapi-admin-inventory-list" data-method="POST"
-      data-path="api/admin/inventory/list"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-admin-inventory-list', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-admin-inventory-list"
-                    onclick="tryItOut('POSTapi-admin-inventory-list');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-admin-inventory-list"
-                    onclick="cancelTryOut('POSTapi-admin-inventory-list');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-admin-inventory-list" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/admin/inventory/list</code></b>
-        </p>
-                    </form>
-
-            <h2 id="endpoints-GETapi-admin-inventory-view--id-">Update the specified resource in storage.</h2>
-
-<p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1200,14 +1154,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/inventory/view/in" \
+    --get "http://localhost/api/admin/inventory/view/necessitatibus" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/inventory/view/in"
+    "http://localhost/api/admin/inventory/view/necessitatibus"
 );
 
 const headers = {
@@ -1224,20 +1178,13 @@ fetch(url, {
 
 <span id="example-responses-GETapi-admin-inventory-view--id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
+                <pre>
 
 <code class="language-json">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+ 'status' =&gt; &quot;success || error&quot;,
+ 'message' =&gt; &quot;sucess || error message&quot;
 }</code>
  </pre>
     </span>
@@ -1253,7 +1200,7 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-admin-inventory-view--id-" data-method="GET"
       data-path="api/admin/inventory/view/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1280,22 +1227,41 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/admin/inventory/view/{id}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-GETapi-admin-inventory-view--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-admin-inventory-view--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="id"
                data-endpoint="GETapi-admin-inventory-view--id-"
-               value="in"
+               value="necessitatibus"
                data-component="url" hidden>
     <br>
 <p>The ID of the view.</p>
             </p>
+                    <p>
+                <b><code>inventory_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="inventory_id"
+               data-endpoint="GETapi-admin-inventory-view--id-"
+               value="1234"
+               data-component="url" hidden>
+    <br>
+<p>Inventory ID.</p>
+            </p>
                     </form>
 
-            <h2 id="endpoints-DELETEapi-admin-inventory-delete--id-">Delete the specified resource in storage.</h2>
+            <h2 id="inventories-DELETEapi-admin-inventory-delete--id-">Delete Inventory</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1306,14 +1272,14 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/admin/inventory/delete/quia" \
+    "http://localhost/api/admin/inventory/delete/atque" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/inventory/delete/quia"
+    "http://localhost/api/admin/inventory/delete/atque"
 );
 
 const headers = {
@@ -1329,7 +1295,17 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-admin-inventory-delete--id-">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ 'status' =&gt; &quot;success || error&quot;,
+ 'message' =&gt; &quot;sucess || error message&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-admin-inventory-delete--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-admin-inventory-delete--id-"></span>:
@@ -1342,7 +1318,7 @@ fetch(url, {
 </span>
 <form id="form-DELETEapi-admin-inventory-delete--id-" data-method="DELETE"
       data-path="api/admin/inventory/delete/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1369,22 +1345,41 @@ fetch(url, {
             <small class="badge badge-red">DELETE</small>
             <b><code>api/admin/inventory/delete/{id}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-DELETEapi-admin-inventory-delete--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-admin-inventory-delete--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="id"
                data-endpoint="DELETEapi-admin-inventory-delete--id-"
-               value="quia"
+               value="atque"
                data-component="url" hidden>
     <br>
 <p>The ID of the delete.</p>
             </p>
+                    <p>
+                <b><code>inventory_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="inventory_id"
+               data-endpoint="DELETEapi-admin-inventory-delete--id-"
+               value="11"
+               data-component="url" hidden>
+    <br>
+<p>Inventory ID</p>
+            </p>
                     </form>
 
-            <h2 id="endpoints-PATCHapi-admin-inventory-update--id-">Update the specified resource in storage.</h2>
+            <h2 id="inventories-PATCHapi-admin-inventory-update--id-">Update Inventory</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1395,20 +1390,20 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/admin/inventory/update/dicta" \
+    "http://localhost/api/admin/inventory/update/et" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"aut\",
-    \"price\": 0.3619,
-    \"quantity\": 12166630.07
+    \"name\": \"Samsung S21 Ultra\",
+    \"price\": 1450,
+    \"quantity\": 120
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/inventory/update/dicta"
+    "http://localhost/api/admin/inventory/update/et"
 );
 
 const headers = {
@@ -1417,9 +1412,9 @@ const headers = {
 };
 
 let body = {
-    "name": "aut",
-    "price": 0.3619,
-    "quantity": 12166630.07
+    "name": "Samsung S21 Ultra",
+    "price": 1450,
+    "quantity": 120
 };
 
 fetch(url, {
@@ -1431,7 +1426,17 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PATCHapi-admin-inventory-update--id-">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ 'status' =&gt; &quot;success || error&quot;,
+ 'message' =&gt; &quot;sucess || error message&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PATCHapi-admin-inventory-update--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PATCHapi-admin-inventory-update--id-"></span>:
@@ -1444,7 +1449,7 @@ fetch(url, {
 </span>
 <form id="form-PATCHapi-admin-inventory-update--id-" data-method="PATCH"
       data-path="api/admin/inventory/update/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1471,49 +1476,155 @@ fetch(url, {
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/admin/inventory/update/{id}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-PATCHapi-admin-inventory-update--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PATCHapi-admin-inventory-update--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="id"
                data-endpoint="PATCHapi-admin-inventory-update--id-"
-               value="dicta"
+               value="et"
                data-component="url" hidden>
     <br>
 <p>The ID of the update.</p>
             </p>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
-            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="name"
                data-endpoint="PATCHapi-admin-inventory-update--id-"
-               value="aut"
+               value="Samsung S21 Ultra"
                data-component="body" hidden>
     <br>
-
+<p>Inventory Name .</p>
         </p>
                 <p>
-            <b><code>price</code></b>&nbsp;&nbsp;<small>number</small>     <i>optional</i> &nbsp;
+            <b><code>price</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
                 <input type="number"
                name="price"
                data-endpoint="PATCHapi-admin-inventory-update--id-"
-               value="0.3619"
+               value="1450"
                data-component="body" hidden>
     <br>
-
+<p>Inventory Price.</p>
         </p>
                 <p>
-            <b><code>quantity</code></b>&nbsp;&nbsp;<small>number</small>     <i>optional</i> &nbsp;
+            <b><code>quantity</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
                 <input type="number"
                name="quantity"
                data-endpoint="PATCHapi-admin-inventory-update--id-"
-               value="12166630.07"
+               value="120"
                data-component="body" hidden>
     <br>
-
+<p>Inventory Supplied Quantity.</p>
         </p>
         </form>
+
+            <h2 id="inventories-GETapi-admin-inventory-list">List Inventory</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-admin-inventory-list">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/admin/inventory/list" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/admin/inventory/list"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-admin-inventory-list">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ 'status' =&gt; &quot;success || error&quot;,
+ 'message' =&gt; &quot;sucess || error message&quot;,
+ 'data' =&gt; []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-admin-inventory-list" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-admin-inventory-list"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-inventory-list"></code></pre>
+</span>
+<span id="execution-error-GETapi-admin-inventory-list" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-admin-inventory-list"></code></pre>
+</span>
+<form id="form-GETapi-admin-inventory-list" data-method="GET"
+      data-path="api/admin/inventory/list"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-inventory-list', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-admin-inventory-list"
+                    onclick="tryItOut('GETapi-admin-inventory-list');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-admin-inventory-list"
+                    onclick="cancelTryOut('GETapi-admin-inventory-list');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-admin-inventory-list" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/admin/inventory/list</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-admin-inventory-list" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-admin-inventory-list"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
         <h1 id="user-authentication">User Authentication</h1>
 
