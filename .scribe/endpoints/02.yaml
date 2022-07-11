@@ -92,14 +92,14 @@ endpoints:
         name: id
         description: 'The ID of the view.'
         required: true
-        example: necessitatibus
+        example: officiis
         type: string
         custom: []
       inventory_id:
         name: inventory_id
         description: 'Inventory ID.'
         required: true
-        example: 1234
+        example: 18
         type: integer
         custom: []
     queryParameters: []
@@ -132,14 +132,14 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: atque
+        example: molestias
         type: string
         custom: []
       inventory_id:
         name: inventory_id
         description: 'Inventory ID'
         required: true
-        example: 11
+        example: 9
         type: integer
         custom: []
     queryParameters: []
@@ -172,7 +172,7 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: et
+        example: voluptatibus
         type: string
         custom: []
     queryParameters: []

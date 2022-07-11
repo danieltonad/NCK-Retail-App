@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// redirect homepage route to docs route
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(to: '/docs');
 });

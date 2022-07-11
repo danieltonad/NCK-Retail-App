@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Laravel
+  title: 'NCK Retail App'
   description: ''
   version: 1.0.0
 servers:
@@ -218,7 +218,7 @@ paths:
         in: path
         name: cart_id
         description: 'Cart ID.'
-        example: 16
+        example: 14
         required: true
         schema:
           type: integer
@@ -269,7 +269,7 @@ paths:
         in: path
         name: cart_id
         description: 'Cart ID.'
-        example: 7
+        example: 18
         required: true
         schema:
           type: integer
@@ -388,7 +388,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the view.'
-        example: necessitatibus
+        example: officiis
         required: true
         schema:
           type: string
@@ -396,7 +396,7 @@ paths:
         in: path
         name: inventory_id
         description: 'Inventory ID.'
-        example: 1234
+        example: 18
         required: true
         schema:
           type: integer
@@ -434,7 +434,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: atque
+        example: molestias
         required: true
         schema:
           type: string
@@ -442,7 +442,7 @@ paths:
         in: path
         name: inventory_id
         description: 'Inventory ID'
-        example: 11
+        example: 9
         required: true
         schema:
           type: integer
@@ -503,7 +503,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the update.'
-        example: et
+        example: voluptatibus
         required: true
         schema:
           type: string

@@ -85,7 +85,7 @@ endpoints:
         name: cart_id
         description: 'Cart ID.'
         required: true
-        example: 16
+        example: 14
         type: integer
         custom: []
     queryParameters: []
@@ -118,7 +118,7 @@ endpoints:
         name: cart_id
         description: 'Cart ID.'
         required: true
-        example: 7
+        example: 18
         type: integer
         custom: []
     queryParameters: []

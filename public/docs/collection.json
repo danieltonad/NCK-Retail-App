@@ -9,8 +9,8 @@
         }
     ],
     "info": {
-        "name": "Laravel",
-        "_postman_id": "bb2ff341-d07c-4940-b853-019114627417",
+        "name": "NCK Retail App",
+        "_postman_id": "9e516e96-eebd-48de-8749-2ef42e36ff31",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -180,7 +180,7 @@
                                 {
                                     "id": "cart_id",
                                     "key": "cart_id",
-                                    "value": "16",
+                                    "value": "14",
                                     "description": "Cart ID."
                                 }
                             ]
@@ -220,7 +220,7 @@
                                 {
                                     "id": "cart_id",
                                     "key": "cart_id",
-                                    "value": "7",
+                                    "value": "18",
                                     "description": "Cart ID."
                                 }
                             ]
@@ -336,13 +336,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "necessitatibus",
+                                    "value": "officiis",
                                     "description": "The ID of the view."
                                 },
                                 {
                                     "id": "inventory_id",
                                     "key": "inventory_id",
-                                    "value": "1234",
+                                    "value": "18",
                                     "description": "Inventory ID."
                                 }
                             ]
@@ -382,13 +382,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "atque",
+                                    "value": "molestias",
                                     "description": "The ID of the delete."
                                 },
                                 {
                                     "id": "inventory_id",
                                     "key": "inventory_id",
-                                    "value": "11",
+                                    "value": "9",
                                     "description": "Inventory ID"
                                 }
                             ]
@@ -428,7 +428,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "et",
+                                    "value": "voluptatibus",
                                     "description": "The ID of the update."
                                 }
                             ]
